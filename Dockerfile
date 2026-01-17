@@ -2,7 +2,8 @@
 FROM amazoncorretto:21-al2023-jdk AS build
 COPY . /app
 WORKDIR /app
-RUN ./gradlew build -x test
+RUN yum install -y findutils && chmod +x gradlew
+RUN ./gradlew build -x test --no-daemon
 
 # Run stage
 FROM amazoncorretto:21-al2023-headless

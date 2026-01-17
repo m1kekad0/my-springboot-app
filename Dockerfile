@@ -5,7 +5,7 @@ WORKDIR /app
 RUN ./gradlew nativeCompile -x test
 
 # Run stage
-FROM distroless.dev/static-debian12
+FROM gcr.io/distroless/static-debian12
 COPY --from=build /app/build/native/nativeCompile/my-springboot-app /app/my-springboot-app
 EXPOSE 8080
 ENTRYPOINT ["/app/my-springboot-app"]
